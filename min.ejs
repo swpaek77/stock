@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+  </head>
+  <body>
+    <p style="font-size: 20px;">현재시간 : [<%= curTime %>]</p>
+    <p>현금 가격 : <input type="number" id="priceNumber" value="<%= WonPrice._value %>"> <button onclick="PriceChange()">변경</button></p>
+    <p>최저가 : <%= minGoldPrice.format('0,0') %> 원</p>     
+    <p>쓴 현금 금액 : <%= spentWonPrice.format('0,0') %> 원</p>
+    
+    <p>가지고 있는 고황증 갯수 : <%= gohwangItemCount.format('0,0') %> 원</p>
+    <p>(최저가 * 고황증) * 0.97 : <%= resultGoldPrice.format('0,0') %> 원</p>
+    
+    <p style="color:blue">(1,000만당 <%= WonPrice.format('0,0') %> 판매 기준)</p>
+    <p>손익분기점 : <%= breakEvenPoint.format('0,0') %> 원</p>
+    
+    <p style="color:chocolate;font-size: 20px;">현재 총 수량 : <%= currentCount.format('0,0') %> 개</p>
+    <p style="color:darkviolet;font-size: 20px;">현재 현금화 가격 : <%= gainLossPrice.format('0,0') %> 원</p>
+    <p style="color:crimson;font-size: 20px;">현재 이득/손해 : <%= gainLossPrice.subtract(spentWonPrice._value).format('0,0') %> 원</p>
+
+    <p>3,700 일때 이득 : <%= gainLossList._3700.subtract(spentWonPrice._value).format('0,0') %> 원</p>
+    <p>3,800 일때 이득 : <%= gainLossList._3800.subtract(spentWonPrice._value).format('0,0') %> 원</p>
+    <p>3,900 일때 이득 : <%= gainLossList._3900.subtract(spentWonPrice._value).format('0,0') %> 원</p>
+    <p>4,000 일때 이득 : <%= gainLossList._4000.subtract(spentWonPrice._value).format('0,0') %> 원</p>
+    <p>4,100 일때 이득 : <%= gainLossList._4100.subtract(spentWonPrice._value).format('0,0') %> 원</p>
+    <p>4,200 일때 이득 : <%= gainLossList._4200.subtract(spentWonPrice._value).format('0,0') %> 원</p>
+    <p>4,300 일때 이득 : <%= gainLossList._4300.subtract(spentWonPrice._value).format('0,0') %> 원</p>
+    <p>4,400 일때 이득 : <%= gainLossList._4400.subtract(spentWonPrice._value).format('0,0') %> 원</p>
+    <p>4,500 일때 이득 : <%= gainLossList._4500.subtract(spentWonPrice._value).format('0,0') %> 원</p>   
+    <p>4,600 일때 이득 : <%= gainLossList._4600.subtract(spentWonPrice._value).format('0,0') %> 원</p>   
+    <p>4,700 일때 이득 : <%= gainLossList._4700.subtract(spentWonPrice._value).format('0,0') %> 원</p>   
+    <p>4,800 일때 이득 : <%= gainLossList._4800.subtract(spentWonPrice._value).format('0,0') %> 원</p>   
+    <p>4,900 일때 이득 : <%= gainLossList._4900.subtract(spentWonPrice._value).format('0,0') %> 원</p>   
+    <p>5,000 일때 이득 : <%= gainLossList._5000.subtract(spentWonPrice._value).format('0,0') %> 원</p>   
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  </body>
+  <script>
+    priceNumber.addEventListener('keyup',function(e){
+      if(e.key == 'Enter')  PriceChange();
+    })
+    function PriceChange(){
+      location.href = '/?price=' + priceNumber.value;
+    }
+  </script>
+</html>

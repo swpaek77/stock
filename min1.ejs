@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+  </head>
+  <body>
+    <p style="font-size: 20px;">현재시간 : [<%= curTime %>]</p>
+    <p>최저가 : <%= minGoldPrice.format('0,0') %> 골드</p>     
+    <p>보유 골드 금액 : 약 <%= ownGoldPrice.format('0,0') %> 골드</p>
+    <p>쓴 골드 금액 : <%= spentGoldPrice.format('0,0') %> 골드</p>
+    
+    <p>가지고 있는 순황증 갯수 : <%= gohwangItemCount.format('0,0') %> 개</p>
+    <p>(최저가 * 순황증) * 0.97 : <%= resultGoldPrice.format('0,0') %> 골드</p>
+    
+    <p>손익분기점 (수수료 포함) : <%= breakEvenPoint.divide(gohwangItemCount.value()).format('0,0') %> 골드</p>
+    <p>손익분기점 (수수료 포함, 합계) : <%= breakEvenPoint.multiply(gohwangItemCount.value()).format('0,0') %> 골드</p>
+    
+    <p style="color:chocolate;font-size: 20px;">현재 총 수량 : <%= currentCount.format('0,0') %> 개</p>
+    <p style="color:crimson;font-size: 20px;">현재 이득/손해 : <%= gainLossPrice.subtract(spentGoldPrice._value).format('0,0') %> 골드</p>
+
+    <p>4,200 일때 이득 : <%= gainLossList._4200.subtract(spentGoldPrice._value).format('0,0') %> 골드</p>
+    <p>4,300 일때 이득 : <%= gainLossList._4300.subtract(spentGoldPrice._value).format('0,0') %> 골드</p>
+    <p>4,400 일때 이득 : <%= gainLossList._4400.subtract(spentGoldPrice._value).format('0,0') %> 골드</p>
+    <p>4,500 일때 이득 : <%= gainLossList._4500.subtract(spentGoldPrice._value).format('0,0') %> 골드</p>   
+    <p>4,600 일때 이득 : <%= gainLossList._4600.subtract(spentGoldPrice._value).format('0,0') %> 골드</p>   
+    <p>4,700 일때 이득 : <%= gainLossList._4700.subtract(spentGoldPrice._value).format('0,0') %> 골드</p>   
+    <p>4,800 일때 이득 : <%= gainLossList._4800.subtract(spentGoldPrice._value).format('0,0') %> 골드</p>   
+    <p>4,900 일때 이득 : <%= gainLossList._4900.subtract(spentGoldPrice._value).format('0,0') %> 골드</p>   
+    <p>5,000 일때 이득 : <%= gainLossList._5000.subtract(spentGoldPrice._value).format('0,0') %> 골드</p>   
+
+    ==============================================
+
+    <p>패키지 1 사이클 : <%= spentWonPrice2.format('0,0') %> 원</p>
+    <p>고황증 투자비 : <%= spentWonPrice.format('0,0') %> 원</p>
+    <p>PC방 쓴 금액 : <%= spentWonPrice3.format('0,0') %> 원</p>
+    
+    <p style="color:crimson;font-size: 20px;">현재 총 자산 : <%= numeral(ownGoldPrice._value + resultGoldPrice._value).format('0,0') %> 골드</p>
+
+    <p style="color:blue;font-size: 20px;">던파 투자금 : <%= totalSpentWonPrice.format('0,0') %> 원</p>
+    <p style="color:brown;font-size: 20px;">던파 회수금 : <%= returnWonPrice.format('0,0') %> 원</p>
+
+    <%
+      var curGainLossWon = numeral(returnWonPrice._value - totalSpentWonPrice._value);
+      var curGainLossWonVar = numeral((ownGoldPrice._value + resultGoldPrice._value) * 0.0007);
+    %>
+
+    <p>던파 이득/손실 (현재) : <%= curGainLossWon.format('0,0') %> 원</p>
+    <p>던파 자산 현금화 ( 7000 기준) : <%= curGainLossWonVar.format('0,0') %> 원</p>
+
+    <p style="color:red;font-size: 20px;">총 던파 이득/손실 (현재) : <%= numeral(curGainLossWon._value + curGainLossWonVar._value).format('0,0') %> 원</p>
+
+    ==============================================
+
+    <p>쓴 피로도 : <%= spentPirodo.format('0,0') %></p>
+    <p>쓴 시간 (예상) : <%= spentTime.format('0,0') %> 시간</p>
+    <p>쓴 시간으로 최저시급 알바 했으면 번 돈 (8,350원) : <%= numeral(spentTime._value * 8350).format('0,0') %> 원</p>
+
+    ==============================================
+
+    <p>던파 안했을 때 돈 : <%= numeral(-(curGainLossWon._value + curGainLossWonVar._value)).format('0,0') %> 원</p>
+    <p>던파 안하고 알바했을 때 돈 : <%= numeral(spentTime._value * 8350 - (curGainLossWon._value + curGainLossWonVar._value)).format('0,0') %> 원</p>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  </body>
+</html>

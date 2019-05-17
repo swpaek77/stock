@@ -1,0 +1,19 @@
+{
+  "name": "stock",
+  "version": "0.0.1",
+  "description": "Money Earn Calculator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Seungwoo Paek",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "moment": "^2.24.0",
+    "numeral": "^2.0.6",
+    "vue": "^2.6.10"
+  }
+}
