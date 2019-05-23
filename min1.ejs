@@ -43,11 +43,11 @@
 
     <%
       var curGainLossWon = numeral(returnWonPrice._value - totalSpentWonPrice._value);
-      var curGainLossWonVar = numeral((ownGoldPrice._value + resultGoldPrice._value) * 0.0007);
+      var curGainLossWonVar = numeral((ownGoldPrice._value + resultGoldPrice._value) * 0.00068);
     %>
 
     <p>던파 이득/손실 (현재) : <%= curGainLossWon.format('0,0') %> 원</p>
-    <p>던파 자산 현금화 ( 7000 기준) : <%= curGainLossWonVar.format('0,0') %> 원</p>
+    <p>던파 자산 현금화 ( 6800 기준) : <%= curGainLossWonVar.format('0,0') %> 원</p>
 
     <p style="color:red;font-size: 20px;">총 던파 이득/손실 (현재) : <%= numeral(curGainLossWon._value + curGainLossWonVar._value).format('0,0') %> 원</p>
 

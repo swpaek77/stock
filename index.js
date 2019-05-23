@@ -29,17 +29,17 @@ app.get('/', function(req, res){
       var minGoldPrice = response.data.rows[0].unitPrice;
       var spentWonPrice = 518500;
       var spentWonPrice2 = 135750;
-      var spentWonPrice3 = 50000;
+      var spentWonPrice3 = 70000;
 
       var returnWonPrice = 75000;
       var totalSpentWonPrice = spentWonPrice + spentWonPrice2 + spentWonPrice3;
 
-      var spentGoldPrice = 623500000;
-      var ownGoldPrice = 130000000;
-      var gohwangItemCount = 15;
+      var spentGoldPrice = 457233333;
+      var ownGoldPrice = 310000000;
+      var gohwangItemCount = 11;
 
       var spentPirodo = 11627 + 3686 + 6729;      
-      var spentTime = 17 * 3;
+      var spentTime = 18 * 3;
 
       var currencyRate = 10000000 / WonPrice;
 
