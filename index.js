@@ -1,30 +1,32 @@
-var express = require('express');
-var axios = require('axios');
-var numeral = require('numeral');
-var moment = require('moment');
+var express = require("express");
+var axios = require("axios");
+var numeral = require("numeral");
+var moment = require("moment");
 
 var app = express();
 var port = process.env.PORT || 5000;
 
 app.use(express.json());
-app.set('view engine','ejs');
-app.get('/', function(req, res){
-  
+app.set("view engine", "ejs");
+app.get("/", function (req, res) {
   // var ItemId = '2361a77a5f2b6ae99df226bde7044c40' // [4월] 고황증
-  var ItemId = '6f093418c284466a55402a4784394d97' // 순황증
-  axios.get(`https://api.neople.co.kr/df/auction?itemId=${ItemId}&sort=unitPrice:asc&wordType=front&limit=400&apikey=72eLZQKp2yMb14nq4FGgzyv4SUsMTqNX`)
-    .then(response => {
+  var ItemId = "6f093418c284466a55402a4784394d97"; // 순황증
+  axios
+    .get(
+      `https://api.neople.co.kr/df/auction?itemId=${ItemId}&sort=unitPrice:asc&wordType=front&limit=400&apikey=${process.env.DNF_API_KEY}`
+    )
+    .then((response) => {
       // console.log(response.data);
       // res.send('최저가 : ' + response.data.rows[0].currentPrice);
       var WonPrice = 7500;
-      if(req.query.price){
-        WonPrice = req.query.price
+      if (req.query.price) {
+        WonPrice = req.query.price;
       }
       var currentCount = 0;
 
-      response.data.rows.forEach(function(r){
+      response.data.rows.forEach(function (r) {
         currentCount += r.count;
-      })
+      });
 
       var minGoldPrice = response.data.rows[0].unitPrice;
       var spentWonPrice = 518500;
@@ -38,7 +40,7 @@ app.get('/', function(req, res){
       var ownGoldPrice = 310000000;
       var gohwangItemCount = 11;
 
-      var spentPirodo = 11627 + 3686 + 6729;      
+      var spentPirodo = 11627 + 3686 + 6729;
       var spentTime = 18 * 3;
 
       var currencyRate = 10000000 / WonPrice;
@@ -57,7 +59,7 @@ app.get('/', function(req, res){
         totalSpentWonPrice: numeral(totalSpentWonPrice),
         spentGoldPrice: numeral(spentGoldPrice),
         gohwangItemCount: numeral(gohwangItemCount),
-        
+
         ownGoldPrice: numeral(ownGoldPrice),
         resultGoldPrice: numeral(minGoldPrice * gohwangItemCount * 0.97),
 
@@ -78,25 +80,24 @@ app.get('/', function(req, res){
           _5000: numeral(50000000 * gohwangItemCount * 0.97),
         },
 
-
-
         moment: moment,
         numeral: numeral,
-      }
+      };
 
-      res.render('../min1.ejs', resultData)
-    })
+      res.render("../min1.ejs", resultData);
+    });
 });
 
-
-app.get('/all', function(req, res){
+app.get("/all", function (req, res) {
   // var ItemId = '2361a77a5f2b6ae99df226bde7044c40' // [4월] 고황증
-  var ItemId = '6f093418c284466a55402a4784394d97' // 순황증
-  axios.get(`https://api.neople.co.kr/df/auction?itemId=${ItemId}&sort=unitPrice:asc&wordType=front&limit=400&apikey=72eLZQKp2yMb14nq4FGgzyv4SUsMTqNX`)
-    .then(response => {
+  var ItemId = "6f093418c284466a55402a4784394d97"; // 순황증
+  axios
+    .get(
+      `https://api.neople.co.kr/df/auction?itemId=${ItemId}&sort=unitPrice:asc&wordType=front&limit=400&apikey=${process.env.DNF_API_KEY}`
+    )
+    .then((response) => {
       res.send(response.data.rows);
-    })
+    });
 });
-
 
 app.listen(port, () => console.log(`Server Listening on Port ${port}`));
